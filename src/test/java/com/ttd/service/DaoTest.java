@@ -1,11 +1,16 @@
 package com.ttd.service;
 
+
+
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
+
+
 
 import com.ttd.dao.RoleDao;
 
@@ -15,8 +20,14 @@ import com.ttd.dao.RoleDao;
 @ContextConfiguration(locations = { "classpath:spring-context.xml"})
 public class DaoTest {
 	
+	
+
+
+
 	@Autowired
 	private RoleDao roleDao;
+
+
 	@Transactional
 	@Test
 	public void test() {
