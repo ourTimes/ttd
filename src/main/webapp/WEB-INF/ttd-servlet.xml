@@ -12,7 +12,7 @@
 	
 	<mvc:annotation-driven />
 	
-	<context:component-scan base-package="com.ttd" />
+	<context:component-scan base-package="com.ttd.controller" />
 	
 	<!-- Forwards requests to the "/" resource to the "welcome" view -->
 	<mvc:view-controller path="/" view-name="index"/>
@@ -20,7 +20,7 @@
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="prefix" value="/WEB-INF/jsp"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
 	
