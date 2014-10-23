@@ -1,0 +1,126 @@
+<b:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:b="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:oauth="http://www.springframework.org/schema/security/oauth2"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+ http://www.springframework.org/schema/context 
+ http://www.springframework.org/schema/context/spring-context-3.2.xsd
+ http://www.springframework.org/schema/security/oauth2 
+	http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd
+  	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.2.xsd
+    http://www.springframework.org/schema/security 
+    http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<!-- 开启spring security调试 <debug /> -->
+	<!-- set System Property -->
+	<!-- 
+	<b:bean id="systemPrereqs"
+		class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<b:property name="targetObject" value="#{@systemProperties}" />
+		<b:property name="targetMethod" value="putAll" />
+		<b:property name="arguments">
+			<util:properties>
+				<b:prop key="spring.security.disableUISecurity">false</b:prop>
+			</util:properties>
+		</b:property>
+	</b:bean>
+ 	-->
+	<b:bean id="slfAccessDecisionManager" class="com.ttd.security.SLFAccessDecisionManager" />
+
+	<b:bean id="accessDeniedHandler" class="com.ttd.web.handler.SLFAccessDeniedHandler">
+		<b:property name="errorPage" value="/error/403.jsp" />
+		<b:property name="exceptionAttribute" value="ex" />
+	</b:bean>
+
+	<b:bean id="authenticationSuccessHandler"
+		class="com.ttd.web.handler.SLFAuthenticationSuccessHandler">
+		<b:property name="defaultTargetUrl" value="/slf/container.jsp" />
+	</b:bean>
+
+	<b:bean id="authenticationFailureHandler"
+		class="com.ttd.web.handler.SLFAuthenticationFailureHandler">
+		<b:property name="defaultTargetUrl" value="/slf/login.jsp?error=true" />
+	</b:bean>
+
+	<b:bean id="logoutSuccessHandler" class="com.ttd.web.handler.SLFLogoutSuccessHandler">
+		<b:property name="defaultTargetUrl" value="/slf/login.jsp" />
+	</b:bean>
+
+	<b:bean id="userDetailsManager" class="com.ttd.security.SLFUserDetailsService" />
+
+	<b:bean id="slfSecurityMetadataSource"
+		class="com.ttd.security.SLFInvocationSecurityMetadataSourceService">
+	</b:bean>
+
+	<b:bean id="authenticationEntryPoint"
+		class="com.ttd.web.handler.SLFLoginUrlAuthenticationEntryPoint">
+		<b:constructor-arg name="loginUrl" value="/slf/login.jsp" />
+	</b:bean>
+
+	<b:bean id="slfFilter" class="com.ttd.security.SLFSecurityInterceptor">
+		<!-- 用户拥有的权限 -->
+		<b:property name="authenticationManager" ref="authenticationManager" />
+		<!-- 用户是否拥有所请求资源的权限 -->
+		<b:property name="accessDecisionManager" ref="slfAccessDecisionManager" />
+		<!-- 资源与权限对应关系 -->
+		<b:property name="securityMetadataSource" ref="slfSecurityMetadataSource" />
+	</b:bean>
+
+	<!-- 需要jsp中以url方式使用sec:authorize标签，需定义此实例，并且要在http之前 -->
+	<b:bean id="webInvocationPrivilegeEvaluator"
+		class="org.springframework.security.web.access.DefaultWebInvocationPrivilegeEvaluator">
+		<b:constructor-arg name="securityInterceptor" ref="slfFilter" />
+	</b:bean>
+
+	<!-- 配置不需要检查的资源 -->
+	<http pattern="/slf/css/**" security="none" />
+	<http pattern="/slf/images/**" security="none" />
+	<http pattern="/slf/js/**" security="none" />
+	<http pattern="/slf/tms_locale/**" security="none" />
+	<http pattern="/slf/widget/**" security="none" />
+	<http pattern="/javascript/**" security="none" />
+	<http pattern="/**.js" security="none" />
+
+	<http pattern="/error/**" security="none" />
+
+	<http pattern="/slf/login.jsp*" security="none" />
+	<http pattern="/sessionTimeout.jsp*" security="none" />
+	
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="userDetailsManager">
+			<password-encoder ref="passwordEncoder">
+				<salt-source user-property="username" />
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+
+    <http use-expressions="true" entry-point-ref="authenticationEntryPoint">
+		<intercept-url pattern="/**" access="" />
+		<!-- login-page:默认指定的登录页面. authentication-failure-url:出错后跳转页面. default-target-url:成功登陆后跳转页面 -->
+		<form-login login-page="/slf/login.jsp"
+			login-processing-url="/login" username-parameter="username"
+			password-parameter="password" authentication-success-handler-ref="authenticationSuccessHandler"
+			authentication-failure-handler-ref="authenticationFailureHandler" />
+
+		<!-- logout-success-url:成功注销后跳转到的页面; -->
+		<logout success-handler-ref="logoutSuccessHandler" />
+
+		<!-- id登陆唯一. 后登陆的账号会挤掉第一次登陆的账号 error-if-maximum-exceeded="true" 禁止2次登陆; 
+			session-fixation-protection="none" 防止伪造sessionid攻击. 用户登录成功后会销毁用户当前的session. 
+			创建新的session,并把用户信息复制到新session中. --><!-- invalid-session-url="/sessionTimeout.jsp" -->
+		<session-management session-fixation-protection="none" >
+			<concurrency-control max-sessions="1"
+				error-if-maximum-exceeded="true" />
+		</session-management>
+		<remember-me user-service-ref="userDetailsManager"/>
+		<custom-filter ref="slfFilter" before="FILTER_SECURITY_INTERCEPTOR" />
+		<access-denied-handler ref="accessDeniedHandler" />
+	</http>
+    
+
+
+</b:beans>
