@@ -1,7 +1,7 @@
 /*
  * Class: Role
  * Description:角色，映射到数据库的角色表
- * Version: 1.0
+ * Version: 1.0.
  */
 package com.ttd.entity;
 
@@ -22,7 +22,7 @@ import org.hibernate.annotations.Type;
 
 /**
  * 
- * @author
+ * @author gao
  * 
  */
 @Entity
@@ -60,6 +60,12 @@ public class Role implements Serializable{
 	@Column(name = "DES", length = 256)
 	private String desc;
 
+	/**
+	 * 权限和角色的关系
+	 */
+	@ManyToMany
+	@JoinTable(name = "Role_Authority", joinColumns = { @JoinColumn(name = "ROLE_KEY") }, inverseJoinColumns = { @JoinColumn(name = "AUTHORITY_KEY") })
+	private Set<Authority> auth;
 
 	/**
 	 * @return the roleKey
@@ -117,7 +123,19 @@ public class Role implements Serializable{
 		this.desc = desc;
 	}
 
+	/**
+	 * @return the auth
+	 */
+	public Set<Authority> getAuth() {
+		return auth;
+	}
 
+	/**
+	 * @param auth the auth to set
+	 */
+	public void setAuth(Set<Authority> auth) {
+		this.auth = auth;
+	}
 
 	
 

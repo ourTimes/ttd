@@ -4,7 +4,6 @@
  * Version: 1.0
  */
 package com.ttd.dao;
-
 import com.ttd.entity.Role;
 
 /**

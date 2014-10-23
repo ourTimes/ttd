@@ -102,6 +102,8 @@
 		</property>
 	</bean>
 
+<bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
 
 
 
