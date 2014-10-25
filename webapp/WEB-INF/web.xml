@@ -8,14 +8,14 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-			classpath*:spring-context.xml,
-			classpath*:spring-security.xml
+			/WEB-INF/conf/spring-context.xml,
+			/WEB-INF/conf/spring-security.xml
 		</param-value>
 	</context-param>
 
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+		<param-value>/WEB-INF/conf/log4j.properties</param-value>
 	</context-param>
 	
 	<!-- Spring 容器启动监听器 初始化Spring的一些配置信息，web容器启动即加载 -->
@@ -34,7 +34,7 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>classpath:dispatcher-servlet.xml</param-value>
+			<param-value>/WEB-INF/conf/dispatcher-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

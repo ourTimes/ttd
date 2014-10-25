@@ -17,7 +17,7 @@ import com.ttd.dao.RoleDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 
-@ContextConfiguration(locations = { "classpath:spring-context.xml"})
+@ContextConfiguration(locations = { "/WEB-INF/conf/spring-context.xml"})
 public class DaoTest {
 	
 	
