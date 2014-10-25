@@ -745,6 +745,7 @@ public class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T, PK> {
 		return (PK) getSession().getIdentifier(t);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Map<PK, T> findMapByIds(Collection<PK> ids)
 			throws DataAccessException {
@@ -757,7 +758,7 @@ public class BaseDaoImpl<T, PK extends Serializable> implements BaseDao<T, PK> {
 	}
 
 	@Override
-	public List<?> findObjBySQL(String sql, Map param)
+	public List<?> findObjBySQL(String sql, Map<String,?> param)
 			throws DataAccessException {
 		Assert.hasText(sql);
 		Query q = createQuerySQL(sql, param);

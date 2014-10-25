@@ -35,7 +35,7 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Long> implements
 	}
 
 	@Override
-	public Page<Role> findPage(Map parameterMap, int pageNo, int pageSize) {
+	public Page<Role> findPage(Map<String,?> parameterMap, int pageNo, int pageSize) {
 		Page<Role> page = new Page<Role>();
 		page.setPageNo(pageNo);
 		page.setPageSize(pageSize);
@@ -49,9 +49,9 @@ public class RoleServiceImpl extends BaseServiceImpl<Role, Long> implements
 		return page;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Role getByRoleName(String roleName) {
-
 		return roleDao.findUnique("from Role where name=?", roleName);
 	}
 

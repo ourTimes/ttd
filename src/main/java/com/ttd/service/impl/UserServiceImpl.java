@@ -38,7 +38,7 @@ public class UserServiceImpl extends BaseServiceImpl<User, Long> implements
 	}
 
 	@Override
-	public Page<User> findPage(Map parameterMap, int pageNo, int pageSize) {
+	public Page<User> findPage(Map<String,?> parameterMap, int pageNo, int pageSize) {
 		return userDao.findPage(parameterMap,pageNo,pageSize);
 	}
 

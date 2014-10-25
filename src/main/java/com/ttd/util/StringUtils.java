@@ -1258,7 +1258,7 @@ public class StringUtils {
 	 * @return 转义后的字符串
 	 * @since 0.6
 	 */
-	public static String escapeCharacter(String source, Map escapeCharMap) {
+	public static String escapeCharacter(String source, Map<String,String> escapeCharMap) {
 		if (source == null || source.length() == 0)
 			return source;
 		if (escapeCharMap.size() == 0)

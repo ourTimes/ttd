@@ -37,7 +37,7 @@ public interface UserService extends BaseService<User,Long> {
 	 *            页大小
 	 * @return
 	 */
-	Page<User> findPage(Map parameterMap, int pageNo, int pageSize);
+	Page<User> findPage(Map<String,?> parameterMap, int pageNo, int pageSize);
 	/**
 	 * 将ShippingPlan转化为ShippingPlanDto
 	 * @param entity

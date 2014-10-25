@@ -40,7 +40,7 @@ public class AuthorityServiceImpl extends BaseServiceImpl<Authority, Long>
 	}
 
 	@Override
-	public Page<Authority> findPage(Map parameterMap, int pageNo, int pageSize) {
+	public Page<Authority> findPage(Map<String,?> parameterMap, int pageNo, int pageSize) {
 		return authorityDao.findPage(parameterMap,pageNo,pageSize);
 	}
 

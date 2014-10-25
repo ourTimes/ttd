@@ -24,6 +24,7 @@ public interface BaseDao<T, PK extends Serializable> {
 	 * 删除标志位的属性名称
 	 */
 	public static final String FIELD_NAME_DELETE_FLAG = "deleteFlag";
+
 	/**
 	 * 清除所有对象缓存
 	 */
@@ -118,21 +119,18 @@ public interface BaseDao<T, PK extends Serializable> {
 	/**
 	 * 执行本地sql语句获得标量数值列表 返回实体对象
 	 */
-	public List<T> executeNativeSqlToClass(String sql)
-			throws DataAccessException;
+	public List<T> executeNativeSqlToClass(String sql) throws DataAccessException;
 
 	/**
 	 * 根据hql查询
 	 */
 	@Deprecated
-	public List<T> find(String hql, Object... values)
-			throws DataAccessException;
+	public List<T> find(String hql, Object... values) throws DataAccessException;
 
 	/**
 	 * 根据hql查询
 	 */
-	public List<T> find(String hql, Map<String, Object> paramMap)
-			throws DataAccessException;
+	public List<T> find(String hql, Map<String, Object> paramMap) throws DataAccessException;
 
 	public void flush();
 
@@ -148,7 +146,9 @@ public interface BaseDao<T, PK extends Serializable> {
 
 	/**
 	 * 获取全部对象
-	 * @param includeSoftDeletedEntity 包含软删除的entity，若为true，则将包含已软删除的所有信息
+	 * 
+	 * @param includeSoftDeletedEntity
+	 *            包含软删除的entity，若为true，则将包含已软删除的所有信息
 	 * @return
 	 * @throws DataAccessException
 	 */
@@ -156,7 +156,9 @@ public interface BaseDao<T, PK extends Serializable> {
 
 	/**
 	 * 通过键值对的形式返回全部的查询结果
-	 * @param includeSoftDeletedEntity 包含软删除的entity，若为true，则将包含已软删除的所有信息
+	 * 
+	 * @param includeSoftDeletedEntity
+	 *            包含软删除的entity，若为true，则将包含已软删除的所有信息
 	 * @return
 	 * @throws DataAccessException
 	 */
@@ -192,14 +194,15 @@ public interface BaseDao<T, PK extends Serializable> {
 
 	/**
 	 * 查询所有对象
-	 * @param includeSoftDeletedEntity 是否包含已软删除的对象
+	 * 
+	 * @param includeSoftDeletedEntity
+	 *            是否包含已软删除的对象
 	 * @param orderBy
 	 * @param isAsc
 	 * @return
 	 * @throws DataAccessException
 	 */
-	public List<T> getAll(boolean includeSoftDeletedEntity,String orderBy, boolean isAsc)
-			throws DataAccessException;
+	public List<T> getAll(boolean includeSoftDeletedEntity, String orderBy, boolean isAsc) throws DataAccessException;
 
 	/**
 	 * 根据ID获取对象，如果对象不存在，抛出异常.
@@ -212,9 +215,7 @@ public interface BaseDao<T, PK extends Serializable> {
 	 * @param values
 	 *            命名参数,按名称绑定.
 	 */
-	public Query createQuery(final String queryString,
-			final Map<String, ?> values);
-
+	public Query createQuery(final String queryString, final Map<String, ?> values);
 
 	/**
 	 * 保存处于游离状态的多个实体，更新后实体对象仍然处于游离状态。
@@ -249,8 +250,7 @@ public interface BaseDao<T, PK extends Serializable> {
 	 * @throws DataAccessException
 	 */
 	@Deprecated
-	Page<T> findPage(Page<T> page, String hql, Object... values)
-			throws DataAccessException;
+	Page<T> findPage(Page<T> page, String hql, Object... values) throws DataAccessException;
 
 	/**
 	 * 分页查询
@@ -264,8 +264,7 @@ public interface BaseDao<T, PK extends Serializable> {
 	 * @return page：对象
 	 * @throws DataAccessException
 	 */
-	Page<T> findPage(Page<T> page, String hql, Map<String, ?> paramMap)
-			throws DataAccessException;
+	Page<T> findPage(Page<T> page, String hql, Map<String, ?> paramMap) throws DataAccessException;
 
 	/**
 	 * 分页查询
@@ -280,8 +279,7 @@ public interface BaseDao<T, PK extends Serializable> {
 	 * @throws DataAccessException
 	 */
 	@Deprecated
-	Page<T> findPageBySQL(Page<T> page, String sql, Object... values)
-			throws DataAccessException;
+	Page<T> findPageBySQL(Page<T> page, String sql, Object... values) throws DataAccessException;
 
 	/**
 	 * 更新多个实体。
@@ -305,13 +303,12 @@ public interface BaseDao<T, PK extends Serializable> {
 	 * @author GaoHuanquan 新添加 根据hql查询
 	 */
 	@Deprecated
-	public List<?> findObjlist(String hql, Object... values)
-			throws DataAccessException;
+	public List<?> findObjlist(String hql, Object... values) throws DataAccessException;
 
 	/**
 	 * @author GaoHuanquan 新添加 分页形式查询对象列表
 	 */
-	public Page<?> findPageObject(Page<?> page, String hql,boolean isHql, Map<String,?> param)
+	public Page<?> findPageObject(Page<?> page, String hql, boolean isHql, Map<String, ?> param)
 			throws DataAccessException;
 
 	/**
@@ -324,6 +321,7 @@ public interface BaseDao<T, PK extends Serializable> {
 
 	/**
 	 * 根据ID集合查询对象
+	 * 
 	 * @param ids
 	 * @return
 	 * @throws DataAccessException
@@ -332,6 +330,7 @@ public interface BaseDao<T, PK extends Serializable> {
 
 	/**
 	 * 查询对象列表
+	 * 
 	 * @param hql
 	 * @param param
 	 * @return
@@ -341,21 +340,23 @@ public interface BaseDao<T, PK extends Serializable> {
 
 	/**
 	 * 查询对象列表
+	 * 
 	 * @param hql
 	 * @param param
 	 * @return
 	 * @throws DataAccessException
 	 */
-	List<?> findObjBySQL(String sql, Map param) throws DataAccessException;
-	
+	List<?> findObjBySQL(String sql, Map<String, ?> param) throws DataAccessException;
+
 	/**
 	 * 根据id集合查询对象,通过键值对的形式返回全部的查询结果
+	 * 
 	 * @param ids
 	 * @return
 	 */
 	Map<PK, T> findMapByIds(Collection<PK> ids) throws DataAccessException;
-	
-	List<?> findAllObject(Class<?> clazz,boolean includeSoftDeletedEntity);
-	
-	Object  findObjectById(Long key,Class<?> clazz);
+
+	List<?> findAllObject(Class<?> clazz, boolean includeSoftDeletedEntity);
+
+	Object findObjectById(Long key, Class<?> clazz);
 }

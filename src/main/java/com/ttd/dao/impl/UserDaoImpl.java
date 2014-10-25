@@ -30,7 +30,7 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao {
 
 
 	@Override
-	public Page<User> findPage(Map parameterMap, int pageNo, int pageSize) {
+	public Page<User> findPage(Map<String,?> parameterMap, int pageNo, int pageSize) {
 		Page<User> page = new Page<User>();
 		page.setPageNo(pageNo);
 		page.setPageSize(pageSize);

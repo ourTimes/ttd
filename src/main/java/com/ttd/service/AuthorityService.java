@@ -32,7 +32,7 @@ public interface AuthorityService extends BaseService<Authority, Long> {
 	 * @param pageSize 页大小
 	 * @return
 	 */
-	Page<Authority> findPage(Map parameterMap, int pageNo, int pageSize);
+	Page<Authority> findPage(Map<String,?> parameterMap, int pageNo, int pageSize);
 
 	/**
 	 * 根据名称查询权限

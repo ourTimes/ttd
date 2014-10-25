@@ -27,7 +27,7 @@ public interface RoleService extends BaseService<Role, Long> {
 	 *            页大小
 	 * @return
 	 */
-	Page<Role> findPage(Map parameterMap, int pageNo, int pageSize);
+	Page<Role> findPage(Map<String,?> parameterMap, int pageNo, int pageSize);
 
 	/**
 	 * 根据名称查询角色

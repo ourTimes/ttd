@@ -51,7 +51,7 @@ public class AuthorityDaoImpl extends BaseDaoImpl<Authority, Long> implements
 	}
 
 	@Override
-	public Page<Authority> findPage(Map parameterMap, int pageNo, int pageSize) {
+	public Page<Authority> findPage(Map<String,?> parameterMap, int pageNo, int pageSize) {
 		Page<Authority> page = new Page<Authority>();
 		page.setPageNo(pageNo);
 		page.setPageSize(pageSize);

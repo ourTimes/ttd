@@ -31,5 +31,5 @@ public interface UserDao extends BaseDao<User, Long> {
 	 * @param pageSize
 	 * @return
 	 */
-	public Page<User> findPage(Map parameterMap, int pageNo, int pageSize);
+	public Page<User> findPage(Map<String,?> parameterMap, int pageNo, int pageSize);
 }

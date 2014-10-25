@@ -42,6 +42,6 @@ public interface AuthorityDao extends BaseDao<Authority, Long> {
 	 * @param pageSize
 	 * @return
 	 */
-	Page<Authority> findPage(Map parameterMap, int pageNo, int pageSize);
+	Page<Authority> findPage(Map<String,?> parameterMap, int pageNo, int pageSize);
 
 }
