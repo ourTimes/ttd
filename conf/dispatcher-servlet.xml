@@ -64,7 +64,6 @@
 
 	</bean>
 
-	<mvc:resources location="/js/**" mapping="/js/**" /> 
 	<mvc:resources location="/script/**" mapping="/script/**" />
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 	<mvc:resources location="/lib/" mapping="/lib/**" />

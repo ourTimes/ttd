@@ -24,7 +24,7 @@ public class RegisterController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value={"apply"}, method=RequestMethod.GET)
+	@RequestMapping(value={"/apply"}, method=RequestMethod.GET)
 	public String apply(Model model){
 		return "/register/apply";
 	}
@@ -32,7 +32,7 @@ public class RegisterController {
 	/**
 	 * 提交注册信息
 	 */
-	@RequestMapping(value={"submit"}, method=RequestMethod.POST)
+	@RequestMapping(value={"/submit"}, method=RequestMethod.POST)
 	public String submit(Model model, HttpServletResponse response,  HttpServletRequest request){
 		try{
 			//TODO
