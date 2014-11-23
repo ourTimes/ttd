@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ttd.web.model.Message;
+import com.ttd.entity.Message;
+
 
 @Controller
 @RequestMapping(value={"/message"})
