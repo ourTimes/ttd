@@ -1,0 +1,8 @@
+CREATE TABLE districts (
+	`id` INT(11) NOT NULL AUTO_INCREMENT,
+	`parent_id` INT(11) NOT NULL,
+	`level` SMALLINT(4) NOT NULL,
+	`code` VARCHAR(16) NOT NULL,
+	`name` VARCHAR(250) NOT NULL,
+	PRIMARY KEY (`id`)
+);
