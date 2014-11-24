@@ -14,11 +14,12 @@ import com.ttd.entity.Districts;
 @RequestMapping(value={"/districts"})
 public class DistrictsController {
 
-
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Districts> get(@RequestParam Integer districtLevel, @RequestParam Integer parentId){
-		
+	public List<Districts> get(@RequestParam(required = true) Integer parentId){
+		//按parentId查询districts
+		//页面加载时，默认parentId为0，即查询所有的省份
+		//页面上选择省份后，会动态的加载该省对应的所有市，此时本方法的参数是省的id
 		return null;
 	}
 	
