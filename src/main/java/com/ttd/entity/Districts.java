@@ -16,7 +16,7 @@ public class Districts {
 
 	@Id
 	@Column(name = "id")
-	private Integer id;
+	private String id;
 	
 	@Column(name = "parent_id")
 	private Integer parentId;
@@ -36,10 +36,10 @@ public class Districts {
 	public static final String _code = "code";
 	public static final String _name = "name";
 	
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public Integer getParentId() {
