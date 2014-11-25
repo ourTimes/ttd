@@ -15,10 +15,9 @@ public class DistrictsDaoImpl extends BaseDaoImpl<Districts, Integer> implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Districts> getBy(Integer parentId) {
-		// TODO Auto-generated method stub
+
 		return this.getSession().createCriteria(Districts.class)
-				.add(Restrictions.eqOrIsNull("parent_id", parentId)).list();
-		//return null;
+				.add(Restrictions.eq(Districts._parentId, parentId)).list();
 	}
 
 }

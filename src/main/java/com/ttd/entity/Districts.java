@@ -30,6 +30,12 @@ public class Districts {
 	@Column(name = "name")
 	private String name;
 	
+	public static final String _id = "id";
+	public static final String _parentId = "parentId";
+	public static final String _level = "level";
+	public static final String _code = "code";
+	public static final String _name = "name";
+	
 	public Integer getId() {
 		return id;
 	}
