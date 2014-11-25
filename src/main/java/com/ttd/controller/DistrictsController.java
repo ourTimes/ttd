@@ -1,5 +1,6 @@
 package com.ttd.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -20,7 +21,15 @@ public class DistrictsController {
 		//按parentId查询districts
 		//页面加载时，默认parentId为0，即查询所有的省份
 		//页面上选择省份后，会动态的加载该省对应的所有市，此时本方法的参数是省的id
-		return null;
+		List<Districts> districts = new ArrayList<Districts>(10);
+		for(int i=0 ; i<10 ; i++){
+			Districts d = new Districts();
+			d.setCode("SB" + i);
+			d.setId(i+1);
+			d.setName("SB" + i + "省");
+			districts.add(d);
+		}
+		return districts;
 	}
 	
 }
