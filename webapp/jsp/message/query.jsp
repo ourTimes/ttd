@@ -23,15 +23,15 @@
 	                        </select>
 	                        <label>出发省:</label>
 	                        <select id="province">
-	                            <option value="0">省</option>
+	                            <option value="0">所有</option>
 	                        </select>
 	                        <label>市:</label>
 	                        <select id="city">
-	                            <option value="0">市</option>
+	                            <option value="0">所有</option>
 	                        </select>
 	                        <label>区(县):</label>
 	                        <select id="dist">
-	                            <option value="0">区(县)</option>
+	                            <option value="0">所有</option>
 	                        </select>
 	                        
 	                        <input type="checkbox" id="viewTypeBtn">
@@ -69,6 +69,7 @@
 	$(document).ready(function(){
 		refreshDistrict(1, 0);//level=1, parentId=0
 		$("#province").change(provinceChange);
+		$("#city").change(cityChange);
 		$("#searchButton").click(searchClick);
 	});
 	
@@ -95,7 +96,7 @@
 		    async:false,
 		    method: 'GET',
 		    url:"/ttd/districts/get",
-		    data:{parentId:parentId},
+		    data:{parentId:parentId, level:level},
 		    success:function(data){
 		    	if (data == null) {
 		    		return;
@@ -109,6 +110,7 @@
 		    		comp = $("#dist");
 		    	}
 		    	comp.empty();
+		    	comp.append("<option value='0'>所有</option>"); 
 		    	for(i = 0; i<data.length; i++){
 		    		comp.append("<option value='"+data[i].id+"'>"+data[i].name+"</option>"); 
 		    	}
