@@ -1,6 +1,5 @@
 package com.ttd.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +9,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ttd.dao.impl.DistrictsDaoImpl;
 import com.ttd.entity.Districts;
+import com.ttd.service.impl.DistrictsServiceImpl;
 
 @Controller
 @RequestMapping(value={"/districts"})
 public class DistrictsController {
 
 	@Autowired
-	private DistrictsDaoImpl quer;
+	private DistrictsServiceImpl quer;
 	
 	@RequestMapping(value = "/get", method = RequestMethod.GET)
 	@ResponseBody
