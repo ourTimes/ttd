@@ -1,6 +1,7 @@
 package com.ttd.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +37,8 @@ public class RegisterController {
 	public String submit(Model model, HttpServletResponse response,  HttpServletRequest request){
 		try{
 			//TODO
+			Map<String, String[]> map = request.getParameterMap();
+			String loginname = request.getParameter("loginName");
 		}catch(Exception e){
 //			logger.error("注册失败。"+ie.getMessage());
 			model.addAttribute("error", e.getMessage());

@@ -32,7 +32,7 @@
 	<!-- edit by chenchenxing at 20130916 order from 1 to 2 -->
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/script/view/" />
+		<property name="prefix" value="/jsp/" />
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1"></property>
 	</bean>
