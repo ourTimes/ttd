@@ -90,7 +90,54 @@
 <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.8.3/jquery.min.js"> </script>
 <script type='text/javascript'>
 $(document).ready(function(){
-	alert("ready");
+	refreshDistrict(1, 0);//level=1, parentId=0
+	$("#province").change(provinceChange);
+	$("#city").change(cityChange);
 });
+
+function provinceChange(){
+	districtChange(1, $(this));//省变化
+}
+
+function cityChange(){
+	districtChange(2, $(this));//市变化
+}
+
+function distChange(){
+	districtChange(3, $(this));//TODO 区县变化
+}
+
+function districtChange(level, comp){
+	if(level>3)return;//
+	var selectedId = comp.children('option:selected').val();
+	refreshDistrict(level+1, selectedId);
+}
+
+function refreshDistrict(level, parentId){
+	$.ajax({
+	    async:false,
+	    method: 'GET',
+	    url:"/ttd/districts/get",
+	    data:{parentId:parentId, level:level},
+	    success:function(data){
+	    	if (data == null) {
+	    		return;
+	    	}
+	    	var comp = null;
+	    	if(level==1){//省
+	    		comp = $("#province");
+	    	}else if(level==2){//市
+	    		comp = $("#city");
+	    	}else if(level==3){//区县
+	    		comp = $("#dist");
+	    	}
+	    	comp.empty();
+	    	comp.append("<option value='0'>所有</option>"); 
+	    	for(i = 0; i<data.length; i++){
+	    		comp.append("<option value='"+data[i].id+"'>"+data[i].name+"</option>"); 
+	    	}
+	    }
+	});
+}
 </script>
 
