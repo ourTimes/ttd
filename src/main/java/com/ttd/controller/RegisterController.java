@@ -1,6 +1,7 @@
 package com.ttd.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,7 +43,9 @@ public class RegisterController {
 	public String submit(Model model, HttpServletResponse response,  HttpServletRequest request){
 		try{
 			User user = null;
-			user.setLoginId("111");
+			//Map<String, String[]> map = request.getParameterMap();
+			String loginname = request.getParameter("loginName");
+			user.setUserName(loginname);
 			//TODO
 			register.add(user);
 		}catch(Exception e){
