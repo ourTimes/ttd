@@ -1,3 +1,3 @@
 <%
-	request.getRequestDispatcher("/jsp/message/query.jsp").forward(request,response);
+	request.getRequestDispatcher("/jsp/message/show.jsp").forward(request,response);
 %>

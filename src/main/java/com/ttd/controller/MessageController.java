@@ -17,6 +17,11 @@ import com.ttd.entity.Message;
 @RequestMapping(value={"/message"})
 public class MessageController {
 	
+	@RequestMapping(value = "/show", method = RequestMethod.GET)
+	public String show(){
+		return "/message/show";
+	}
+	
 	@RequestMapping(value = "/query", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Message> query(){
