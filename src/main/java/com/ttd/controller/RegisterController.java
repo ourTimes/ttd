@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ttd.entity.User;
+import com.ttd.service.impl.RegisterServiceImpl;
 import com.ttd.web.model.CityModel;
 import com.ttd.web.model.ProvinceModel;
 
@@ -20,6 +23,8 @@ import com.ttd.web.model.ProvinceModel;
 @RequestMapping(value={"/register"})
 public class RegisterController {
 
+	@Autowired
+	private RegisterServiceImpl register;
 	/**
 	 * 请求注册页面
 	 * @param model
@@ -33,12 +38,16 @@ public class RegisterController {
 	/**
 	 * 提交注册信息
 	 */
+	@SuppressWarnings("null")
 	@RequestMapping(value={"/submit"}, method=RequestMethod.POST)
 	public String submit(Model model, HttpServletResponse response,  HttpServletRequest request){
 		try{
-			//TODO
-			Map<String, String[]> map = request.getParameterMap();
+			User user = null;
+			//Map<String, String[]> map = request.getParameterMap();
 			String loginname = request.getParameter("loginName");
+			user.setUserName(loginname);
+			//TODO
+			register.add(user);
 		}catch(Exception e){
 //			logger.error("注册失败。"+ie.getMessage());
 			model.addAttribute("error", e.getMessage());
