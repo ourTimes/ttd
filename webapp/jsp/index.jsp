@@ -1,3 +1,3 @@
 <%
-	request.getRequestDispatcher("/jsp/message/show.jsp").forward(request,response);
+	request.getRequestDispatcher("/jsp/login/login.jsp").forward(request,response);
 %>
