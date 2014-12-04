@@ -2,6 +2,8 @@ package com.ttd.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,8 +46,26 @@ public class RegisterController {
 		try{
 			User user = null;
 			//Map<String, String[]> map = request.getParameterMap();
+			String username = request.getParameter("username");
 			String loginname = request.getParameter("loginName");
-			user.setUserName(loginname);
+			String password = request.getParameter("password");
+			String mobile = request.getParameter("mobile");
+//			String 
+			Pattern pattern = Pattern.compile("^[a-zA-Z0-9_]{6,15}$");
+			Pattern patternmob = Pattern.compile("^\\d{11}$");
+			Matcher matcher = pattern.matcher(loginname.trim());
+			if(matcher.find()){
+				user.setPassword(loginname.trim());
+			}
+			matcher = pattern.matcher(password.trim());
+			if(matcher.find()){
+				user.setPassword(password.trim());
+			}
+			matcher = patternmob.matcher(mobile.trim());
+			if(matcher.find()){
+				user.setPassword(mobile.trim());
+			}
+			user.setUserName(username.trim());			
 			//TODO
 			register.add(user);
 		}catch(Exception e){
