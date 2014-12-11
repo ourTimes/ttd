@@ -40,4 +40,17 @@ public class MessageController {
 		return msgs;
 	}
 	
+	@RequestMapping(value = "/create", method = RequestMethod.POST)
+	public void create(@ModelAttribute("departure") String departure,
+			@ModelAttribute("destination") String destination,
+			@ModelAttribute("date") String date,
+			@ModelAttribute("type") String type,
+			@ModelAttribute("message") String message) {
+		System.out.println("departure = " + departure);
+		System.out.println("destination = " + destination);
+		System.out.println("date = " + date);
+		System.out.println("type = " + type);
+		System.out.println("message = " + message);
+	}
+	
 }
